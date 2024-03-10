@@ -1,0 +1,39 @@
+#modern-select {
+  /* General Styles */
+  width: 200px;
+  height: 2.6rem;
+  padding: 10px 20px 10px 10px; /* Adjust padding for desired spacing around text */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  appearance: none; /* Remove default styles */
+  cursor: pointer; /* Indicate interactivity */
+  outline: none; /* Remove default outline on focus */
+
+  /* Focus Style */
+  &:focus {
+    border-color: #007bff;
+  }
+
+  /* Selected Style */
+  & option:checked {
+    background-color: #007bff;
+  }
+}
+
+#modern-select::after {
+  /* Custom Arrow Icon */
+  content: "\25BC"; /* Unicode down arrow character */
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  transition: transform 0.2s ease-in-out;
+}
+
+#modern-select:hover::after {
+  transform: translateY(-50%) rotate(180deg);
+}

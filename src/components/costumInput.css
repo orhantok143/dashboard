@@ -1,0 +1,31 @@
+.input-container {
+  padding: 0.5rem;
+}
+
+.modern-input {
+  /* Genel Stil */
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  color: #333;
+
+  /* Odaklanma Stili */
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Geçersiz Stili */
+  &.invalid {
+    border-color: #ff0000;
+  }
+
+  /* Placeholder Stili */
+  &::placeholder {
+    color: #999;
+    font-style: italic;
+  }
+}

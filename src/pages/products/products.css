@@ -1,0 +1,96 @@
+.header {
+  padding: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.537) 0px 0px 9px;
+  background: #dfdfdf;
+  margin-left: 0.5rem;
+  border-radius: 8px;
+}
+
+._table {
+  padding: 0.5rem;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title h4 {
+  color: #840606;
+  padding: 0.4rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.title input {
+  width: 100%;
+  height: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.7rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Geçersiz Stili */
+  &.invalid {
+    border-color: #ff0000;
+  }
+
+  /* Placeholder Stili */
+  &::placeholder {
+    color: #999;
+    font-style: italic;
+  }
+}
+table {
+  width: 100%;
+  padding: 0.2rem;
+}
+thead {
+  background-color: #201e20f0;
+  padding: 1rem;
+}
+thead tr th {
+  color: #dfdfdf;
+  padding: 0.2rem 0.3rem;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
+tbody {
+  height: 100%;
+}
+td {
+  padding: 0.3rem;
+}
+td svg {
+  font-size: 1.3rem;
+  color: #840606;
+}
+._action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 992px) {
+  ._category {
+    display: none;
+  }
+  ._subCategory {
+    display: none;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  ._category {
+    display: none;
+  }
+  ._subCategory {
+    display: none;
+  }
+}

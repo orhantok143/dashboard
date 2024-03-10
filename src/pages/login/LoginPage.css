@@ -1,0 +1,91 @@
+/* LoginPage.css */
+
+.glassmorphic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../../../../flamingo/src/assets/images/bg_hero.jpg")
+    center/cover;
+  margin: 0;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  width: 300px;
+  /* height: 250px; */
+  text-align: center;
+}
+form {
+  margin-top: 1rem;
+  height: 100%;
+  /* display: flex;
+  flex-direction: column; */
+  gap: 2rem;
+  /* justify-content: space-between; */
+}
+
+.moder-input {
+  background: transparent;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  color: #ffffffee;
+  margin-bottom: 1rem;
+
+  /* Odaklanma Stili */
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Geçersiz Stili */
+  &.invalid {
+    border-color: #ff0000;
+  }
+
+  /* Placeholder Stili */
+  &::placeholder {
+    color: #d7d7d7;
+    font-style: italic;
+  }
+}
+/* ... (diğer stilleri buraya ekleyin) */
+
+/* styles.css */
+
+.head {
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a022a;
+  text-align: center;
+  margin-bottom: 20px;
+  /* text-transform: uppercase; */
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  color: #3498db;
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.button:hover {
+  background-color: #3498db;
+  color: #fff;
+}

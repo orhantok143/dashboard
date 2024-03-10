@@ -1,0 +1,70 @@
+html {
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+body {
+  background: linear-gradient(
+    45deg,
+    rgb(104, 103, 113) 32%,
+    rgb(40, 61, 45) 100%
+  );
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
+}
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+._section {
+  width: 97%;
+  height: 100vh;
+  padding: 0.5rem;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 16% auto;
+
+  gap: auto;
+}
+._header {
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 992px) {
+  ._section {
+    width: 100%;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  ._section {
+    width: 100%;
+  }
+}

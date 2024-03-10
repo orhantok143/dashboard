@@ -1,0 +1,35 @@
+#_btn {
+  padding: 0.5rem;
+}
+
+#modern-button {
+  /* Genel Stil */
+  width: 150px;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  /* Fare Üzerinde */
+  &:hover {
+    background-color: #0069d9;
+  }
+
+  /* Basılı */
+  &:active {
+    background-color: #0057b2;
+    transform: translateY(2px);
+  }
+
+  /* Odaklanma */
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  }
+}
