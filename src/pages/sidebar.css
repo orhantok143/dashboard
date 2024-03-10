@@ -77,6 +77,9 @@ ul li a svg {
     display: block;
     text-align: center;
   }
+  ._dashboard h2 {
+    display: none;
+  }
   ul li a {
     padding: 0.5rem 0;
     justify-content: center;

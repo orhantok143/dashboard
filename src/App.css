@@ -24,13 +24,14 @@ ul {
   font-weight: normal;
 }
 body {
-  background: linear-gradient(
+  background: rgba(214, 214, 214, 0.949);
+  /* background: linear-gradient(
     45deg,
     rgb(104, 103, 113) 32%,
     rgb(40, 61, 45) 100%
-  );
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
+  ); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 ol,
 ul {
