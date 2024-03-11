@@ -16,10 +16,6 @@ const Products = () => {
     let val = e.target.value;
     setValue(val);
   };
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
 
   const [products, setProducts] = useState(
     useSelector((state) => {
