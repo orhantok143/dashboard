@@ -8,15 +8,17 @@ import { SectionPage } from './pages/SectionPage/SectionPage';
 
 function App() {
   return (
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-
         <Route path="/admin/*" element={<SectionPage />} />
       </Routes>
-
     </BrowserRouter >
   );
 }
 
 export default App;
+
+
+// eslint-disable-next-line
