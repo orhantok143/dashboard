@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import { headers } from '../baseUrl';
 
 
 
@@ -18,6 +19,6 @@ export const userLogin = async (url, data) => {
 
 
 export const userLogout = async (url) => {
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
