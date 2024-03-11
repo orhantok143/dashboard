@@ -46,6 +46,7 @@ const LoginPage = () => {
     } else {
       navigator("");
     }
+    //eslint-disable-next-line
   }, [user, error, success, loading]);
 
   return (
