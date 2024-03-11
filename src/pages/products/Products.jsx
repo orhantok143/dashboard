@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./products.css";
 // import { Link } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { delProduct, getProducts } from "../../redux/product/productSlice";
-import { getCategories } from "../../redux/category/categorySlice";
+import { delProduct } from "../../redux/product/productSlice";
 
 const Products = () => {
   const dispatch = useDispatch();

@@ -7,6 +7,8 @@ import "./LoginPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/login/loginSlice";
 import { useNavigate } from "react-router-dom";
+import { getCategories } from "../../redux/category/categorySlice";
+import { getProducts } from "../../redux/product/productSlice";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required("Kullanıcı adı zorunludur"),
