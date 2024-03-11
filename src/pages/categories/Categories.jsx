@@ -10,21 +10,20 @@ export const Categories = () => {
   const [value, setValue] = useState("");
   const [categories, setCategories] = useState([]);
 
-  const allCategories = useState(
-    useSelector((state) => {
-      const cat = state.categories.Categories.categories
-        ? state.categories.Categories.categories
-        : [];
+  let a = useSelector((state) => {
+    const cat = state.categories.Categories.categories
+      ? state.categories.Categories.categories
+      : [];
 
-      return cat;
-    })
-  );
+    return cat;
+  });
 
   useEffect(() => {
-    setCategories(allCategories[0]);
-  }, []);
+    setCategories(a);
+  }, [a]);
 
-  console.log("Categories", categories);
+  console.log("Categories", a);
+  console.log("Value", value);
 
   const handleDelete = (id) => {
     dispatch(delCategory(id));
@@ -38,7 +37,7 @@ export const Categories = () => {
 
     // categories state'ini güncelle (filtreleme işlemi)
     setCategories(
-      allCategories[0].filter((c) =>
+      categories[0].filter((c) =>
         c.title.toLowerCase().includes(value.toLowerCase().trim())
       )
     );

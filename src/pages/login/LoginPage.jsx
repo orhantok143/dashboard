@@ -17,7 +17,9 @@ const LoginSchema = Yup.object().shape({
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+
   const navigator = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
