@@ -6,12 +6,11 @@ import { TbShoppingBagPlus } from "react-icons/tb";
 import { MdLibraryBooks } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 import { BiBookAdd } from "react-icons/bi";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../redux/login/loginSlice";
 
 const Sidebar = () => {
-  // const navigator = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogout = () => {

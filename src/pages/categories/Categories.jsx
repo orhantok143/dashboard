@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./categories.css";
 // import { Link } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { delCategory, getCategories } from "../../redux/category/categorySlice";
+import { delCategory } from "../../redux/category/categorySlice";
 
 export const Categories = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    dispatch(getCategories());
-    setCategories(allCategories[0]);
-  }, [dispatch]);
 
   const allCategories = useState(
     useSelector((state) => {
@@ -26,6 +21,10 @@ export const Categories = () => {
     })
   );
 
+  setCategories(allCategories[0]);
+
+  console.log(value);
+
   const handleDelete = (id) => {
     // Redux'tan kategori silme işlemi
     dispatch(delCategory(id));
@@ -34,15 +33,14 @@ export const Categories = () => {
     setCategories(categories.filter((c) => c._id !== id));
   };
 
-  const handleFilter = (avalue) => {
+  const handleFilter = (value) => {
     // Arama işlemi
-    setValue(avalue);
+    setValue(value);
 
-    console.log(avalue.toLowerCase());
     // categories state'ini güncelle (filtreleme işlemi)
     setCategories(
       allCategories[0].filter((c) =>
-        c.title.toLowerCase().includes(avalue.toLowerCase().trim())
+        c.title.toLowerCase().includes(value.toLowerCase().trim())
       )
     );
     console.log("cat", categories);
