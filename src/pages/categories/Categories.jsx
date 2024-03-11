@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./categories.css";
-// import { Link } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,15 +20,15 @@ export const Categories = () => {
     })
   );
 
-  setCategories(allCategories[0]);
+  useEffect(() => {
+    setCategories(allCategories[0]);
+  }, []);
 
-  console.log(value);
+  console.log("Categories", categories);
 
   const handleDelete = (id) => {
-    // Redux'tan kategori silme işlemi
     dispatch(delCategory(id));
 
-    // categories state'ini güncelle (silinecek kategoriyi hariç tutarak)
     setCategories(categories.filter((c) => c._id !== id));
   };
 
@@ -43,10 +42,7 @@ export const Categories = () => {
         c.title.toLowerCase().includes(value.toLowerCase().trim())
       )
     );
-    console.log("cat", categories);
   };
-
-  console.log("categories::", allCategories[0]);
 
   return (
     <div className="__table">
@@ -56,9 +52,7 @@ export const Categories = () => {
           <input
             type="search"
             placeholder="Ara"
-            onChange={(e) => {
-              handleFilter(e.target.value);
-            }}
+            onChange={(e) => handleFilter(e.target.value)}
           />
         </div>
 
@@ -66,27 +60,21 @@ export const Categories = () => {
           <thead>
             <tr>
               <th className="__category">Categories</th>
-              {/* <th className="__subCategory">Sub Categories</th> */}
-
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {categories.map((product, i) => {
-              return (
-                <tr key={i}>
-                  <td className="__category">{product.title}</td>
+            {categories.map((category, i) => (
+              <tr>
+                <td className="__category">{category.title}</td>
 
-                  <td className="__action">
-                    <FaRegEdit />
+                <td className="__action">
+                  <FaRegEdit />
 
-                    <MdDeleteOutline
-                      onClick={() => handleDelete(product._id)}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+                  <MdDeleteOutline onClick={() => handleDelete(category._id)} />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
