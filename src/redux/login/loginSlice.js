@@ -3,6 +3,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { baseURL } from '../baseUrl';
 import { userLogin, userLogout } from './loginService';
 
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
+
 const getUserfromLocalStorage = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
@@ -17,7 +20,7 @@ const initialState = {
 
 
 export const loginUser = createAsyncThunk('auth/login', async (loginUser) => {
-    const response = await userLogin(`${baseURL}/user/login`, loginUser);
+    const response = await userLogin(` ${proxyUrl} +${baseURL}/user/login`, loginUser);
     if (response.data) {
         localStorage.setItem("user", JSON.stringify(response.data));
     }
