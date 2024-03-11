@@ -21,6 +21,6 @@ export const userLogin = async (url, data) => {
 
 
 export const userLogout = async (url) => {
-    return axios.get(url, headers);
+    return axios.get(url, { headers });
 };
 

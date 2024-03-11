@@ -8,13 +8,13 @@ export const getProduct = async (url) => {
 };
 
 export const createProduct = async (url, data) => {
-    return axios.post(url, data, headers);
+    return axios.post(url, data, { headers });
 };
 
 export const updateProduct = async (url, data) => {
-    return axios.put(url, data, headers);
+    return axios.put(url, data, { headers });
 };
 
 export const deleteProduct = async (url) => {
-    return axios.delete(url, headers);
+    return axios.delete(url, { headers });
 };
