@@ -5,8 +5,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url("../../../../flamingo/src/assets/images/bg_hero.jpg")
-    center/cover;
+  background: url("../../assest/bg_hero.jpg") center/cover;
   margin: 0;
 }
 
