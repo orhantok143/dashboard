@@ -19,9 +19,7 @@ const Products = () => {
   const [products, setProducts] = useState(
     useSelector((state) => {
       const pro = state.products.products.product
-        ? state.products.products.product.filter((c) =>
-            c.title.toLowerCase().includes(value.toLowerCase().trim())
-          )
+        ? state.products.products.product
         : [];
       return pro;
     })
