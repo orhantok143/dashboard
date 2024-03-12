@@ -9,11 +9,9 @@ import { headers } from '../baseUrl';
 export const userLogin = async (url, data) => {
     return axios.post(url, data, {
 
-        headers: {
-            'Content-Type': 'application/json',
-        },
+
         withCredentials: true,
-        credentials: 'include'
+
 
 
 
