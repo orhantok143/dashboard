@@ -5,6 +5,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { delProduct } from "../../redux/product/productSlice";
+import Loading from "../loading/Loading";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,11 @@ const Products = () => {
     })
   );
 
+  const categoryLoading = useSelector((state) => state.categories.loading);
+  const productLoading = useSelector((state) => state.products.loading);
+
+  const loading = categoryLoading || productLoading;
+
   const handleDelete = (id) => {
     dispatch(delProduct(id));
     let pro = products.filter((p) => p._id !== id);
@@ -34,7 +40,9 @@ const Products = () => {
   console.log("Products::", products);
   console.log("Value::", value);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="_table">
       <div className="_table_header">
         <div className="title">

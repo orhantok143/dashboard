@@ -35,6 +35,7 @@ const LoginPage = () => {
   const authState = useSelector((state) => state.user);
 
   const { user, error, success, loading } = authState;
+
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
