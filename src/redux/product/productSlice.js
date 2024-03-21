@@ -6,6 +6,7 @@ import { baseURL } from '../baseUrl';
 
 
 
+
 export const getProducts = createAsyncThunk('getProducts', async () => {
     const response = await getProduct(`${baseURL}/product/get-all-products`);
     localStorage.setItem("products", JSON.stringify(response.data.product))
@@ -19,6 +20,12 @@ export const addProduct = createAsyncThunk('createProduct', async (newProduct) =
 
 export const putProduct = createAsyncThunk('updateProduct', async (updatedProduct) => {
     const response = await updateProduct(`${baseURL}/product/edit-product/${updatedProduct._id}`, updatedProduct);
+    let ps = JSON.parse(localStorage.getItem("products"))
+    ps.find(p => p._id === updateProduct._id)
+    console.log("ps::", ps);
+
+    localStorage.setItem("products", JSON.stringify(ps))
+
     return response.data;
 });
 

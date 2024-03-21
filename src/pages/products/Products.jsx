@@ -3,9 +3,9 @@ import "./products.css";
 // import { Link } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { delProduct, setProductToEdit } from "../../redux/product/productSlice";
-import Loading from "../loading/Loading";
+// import Loading from "../loading/Loading";
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {
@@ -27,10 +27,10 @@ const Products = () => {
     navigator("../add-product");
   };
 
-  const categoryLoading = useSelector((state) => state.categories.loading);
-  const productLoading = useSelector((state) => state.products.loading);
+  // const categoryLoading = useSelector((state) => state.categories.loading);
+  // const productLoading = useSelector((state) => state.products.loading);
 
-  const loading = categoryLoading || productLoading;
+  // const loading = categoryLoading || productLoading;
 
   const handleDelete = (id) => {
     dispatch(delProduct(id));
@@ -38,9 +38,7 @@ const Products = () => {
     setProducts(pro);
   };
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="_table">
       <div className="_table_header">
         <div className="title">
