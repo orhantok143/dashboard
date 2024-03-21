@@ -12,20 +12,22 @@ const Products = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const [value, setValue] = useState("");
+  const [products, setProducts] = useState(
+    localStorage
+      .getItem("products")
+      .filter((p) =>
+        p.title.trim().toLowerCase().include(value.trim().toLowerCase())
+      )
+  );
   console.log(value);
   const handleonChange = (e) => {
     let val = e.target.value;
     setValue(val);
   };
 
-  const [products, setProducts] = useState(
-    useSelector((state) => {
-      const pro = state.products.products.product
-        ? state.products.products.product
-        : [];
-      return pro;
-    })
-  );
+  localStorage.getItem("products");
+
+  console.log(products);
 
   const handleEdit = (product) => {
     dispatch(setProductToEdit(product));
