@@ -12,22 +12,15 @@ const Products = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const [value, setValue] = useState("");
-  const [products, setProducts] = useState(
-    localStorage
-      .getItem("products")
-      .filter((p) =>
-        p.title.trim().toLowerCase().include(value.trim().toLowerCase())
-      )
-  );
-  console.log(value);
+
   const handleonChange = (e) => {
     let val = e.target.value;
     setValue(val);
   };
 
-  localStorage.getItem("products");
-
-  console.log(products);
+  const [products, setProducts] = useState(
+    JSON.parse(localStorage.getItem("products"))
+  );
 
   const handleEdit = (product) => {
     dispatch(setProductToEdit(product));
@@ -73,24 +66,31 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, i) => {
-              return (
-                <tr key={i}>
-                  <td> {product.title} </td>
+            {products
+              .filter((p) =>
+                p.title
+                  .trim()
+                  .toLowerCase()
+                  .includes(value.trim().toLowerCase())
+              )
+              .map((product, i) => {
+                return (
+                  <tr key={i}>
+                    <td> {product.title} </td>
 
-                  <td className="_category">{product.category}</td>
-                  <td className="_subCategory">{product.subCategory}</td>
-                  <td>{product.price}</td>
-                  <td className="_action">
-                    <FaRegEdit onClick={() => handleEdit(product)} />
+                    <td className="_category">{product.category}</td>
+                    <td className="_subCategory">{product.subCategory}</td>
+                    <td>{product.price}</td>
+                    <td className="_action">
+                      <FaRegEdit onClick={() => handleEdit(product)} />
 
-                    <MdDeleteOutline
-                      onClick={() => handleDelete(product._id)}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+                      <MdDeleteOutline
+                        onClick={() => handleDelete(product._id)}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

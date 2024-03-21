@@ -29,7 +29,6 @@ const LoginPage = () => {
     dispatch(loginUser(values));
 
     // Burada form gönderme işlemleri gerçekleştirilebilir.
-    console.log(values);
   };
 
   const authState = useSelector((state) => state.user);

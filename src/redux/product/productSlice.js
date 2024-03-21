@@ -8,7 +8,7 @@ import { baseURL } from '../baseUrl';
 
 export const getProducts = createAsyncThunk('getProducts', async () => {
     const response = await getProduct(`${baseURL}/product/get-all-products`);
-    localStorage.setItem(JSON.stringify("products", response.data.product))
+    localStorage.setItem("products", JSON.stringify(response.data.product))
     return response.data;
 });
 
