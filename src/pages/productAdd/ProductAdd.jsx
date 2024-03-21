@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./productAdd.css";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, putProduct } from "../../redux/product/productSlice";
 
@@ -20,17 +21,18 @@ const validationSchema = yup.object({
 const ProductAdd = () => {
   const dispatch = useDispatch();
 
-  let categories = useSelector((state) => {
-    const cat = state.categories.Categories.categories
-      ? state.categories.Categories.categories
-      : [];
-    return cat;
-  });
+  // let categories = useSelector((state) => {
+  //   const cat = state.categories.Categories.categories
+  //     ? state.categories.Categories.categories
+  //     : [];
+  //   return cat;
+  // });
+
+  const categories = JSON.parse(localStorage.getItem("categories"));
 
   const editProduct = useSelector((state) => state.products.editProduct);
   const isEdit = useSelector((state) => state.products.isEdit);
-  console.log("editProduct:::", editProduct);
-  console.log("isEdit:::", isEdit);
+
   const [loadImage, setImage] = useState("");
   const [subCategories, setsubCategories] = useState([]);
 
@@ -68,11 +70,11 @@ const ProductAdd = () => {
         values.image = loadImage;
         if (values._id) {
           dispatch(putProduct(values));
+          actions.resetForm();
         } else {
           dispatch(addProduct(values));
+          actions.resetForm();
         }
-
-        actions.resetForm();
       }}
     >
       {(formik) => (
@@ -96,8 +98,8 @@ const ProductAdd = () => {
           <Field
             className="modern-input"
             id="description"
-            type="textarea"
             name="description"
+            type="textarea"
             placeholder="Açıklama...."
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -137,7 +139,9 @@ const ProductAdd = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
-            <option value="">Alt Kategori Seçiniz...</option>
+            <option value="">
+              {isEdit ? editProduct.subCategory : "Alt Kategori Seçiniz..."}
+            </option>
 
             {subCategories.map((subCategory, i) => (
               <option key={i} value={subCategory.subCategory}>
