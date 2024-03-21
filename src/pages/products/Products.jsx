@@ -4,14 +4,15 @@ import "./products.css";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { delProduct } from "../../redux/product/productSlice";
+import { delProduct, setProductToEdit } from "../../redux/product/productSlice";
 import Loading from "../loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const dispatch = useDispatch();
-
+  const navigator = useNavigate();
   const [value, setValue] = useState("");
-
+  console.log(value);
   const handleonChange = (e) => {
     let val = e.target.value;
     setValue(val);
@@ -26,6 +27,11 @@ const Products = () => {
     })
   );
 
+  const handleEdit = (product) => {
+    dispatch(setProductToEdit(product));
+    navigator("../add-product");
+  };
+
   const categoryLoading = useSelector((state) => state.categories.loading);
   const productLoading = useSelector((state) => state.products.loading);
 
@@ -36,9 +42,6 @@ const Products = () => {
     let pro = products.filter((p) => p._id !== id);
     setProducts(pro);
   };
-
-  console.log("Products::", products);
-  console.log("Value::", value);
 
   return loading ? (
     <Loading />
@@ -77,7 +80,7 @@ const Products = () => {
                   <td className="_subCategory">{product.subCategory}</td>
                   <td>{product.price}</td>
                   <td className="_action">
-                    <FaRegEdit />
+                    <FaRegEdit onClick={() => handleEdit(product)} />
 
                     <MdDeleteOutline
                       onClick={() => handleDelete(product._id)}

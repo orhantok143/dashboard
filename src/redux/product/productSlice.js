@@ -17,7 +17,7 @@ export const addProduct = createAsyncThunk('createProduct', async (newProduct) =
 });
 
 export const putProduct = createAsyncThunk('updateProduct', async (updatedProduct) => {
-    const response = await updateProduct(`/product/${updatedProduct.id}`, updatedProduct);
+    const response = await updateProduct(`${baseURL}/product/edit-product/${updatedProduct._id}`, updatedProduct);
     return response.data;
 });
 
@@ -31,15 +31,23 @@ const initialState = {
     products: [],
     loading: "false",
     sucsess: "false",
-    error: "false"
-
+    error: "false",
+    editProduct: null,
+    isEdit: false
 }
 
 
 const productSlice = createSlice({
     name: 'product',
     initialState,
-    reducers: {},
+    reducers: {
+        setProductToEdit: (state, action) => {
+            return {
+                ...state, editProduct: action.payload,
+                isEdit: true
+            };
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getProducts.pending, (state, action) => {
@@ -92,8 +100,25 @@ const productSlice = createSlice({
                 state.sucsess = false
 
             })
+            .addCase(putProduct.pending, (state, action) => {
+                state.loading = true
+                state.error = false
+                state.sucsess = false
 
+
+            }).addCase(putProduct.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = false
+                state.sucsess = true
+
+            }).addCase(putProduct.rejected, (state, action) => {
+                state.loading = false
+                state.error = true
+                state.sucsess = false
+
+            })
     },
 });
 
+export const { setProductToEdit } = productSlice.actions
 export default productSlice.reducer;

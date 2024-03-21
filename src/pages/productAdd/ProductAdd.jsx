@@ -3,7 +3,7 @@ import "./productAdd.css";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../redux/product/productSlice";
+import { addProduct, putProduct } from "../../redux/product/productSlice";
 
 const validationSchema = yup.object({
   title: yup.string().required("Ürün ismi gereklidir"),
@@ -27,6 +27,10 @@ const ProductAdd = () => {
     return cat;
   });
 
+  const editProduct = useSelector((state) => state.products.editProduct);
+  const isEdit = useSelector((state) => state.products.isEdit);
+  console.log("editProduct:::", editProduct);
+  console.log("isEdit:::", isEdit);
   const [loadImage, setImage] = useState("");
   const [subCategories, setsubCategories] = useState([]);
 
@@ -57,19 +61,23 @@ const ProductAdd = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={isEdit ? editProduct : initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
         console.log("values", values);
         values.image = loadImage;
+        if (values._id) {
+          dispatch(putProduct(values));
+        } else {
+          dispatch(addProduct(values));
+        }
 
-        dispatch(addProduct(values));
         actions.resetForm();
       }}
     >
       {(formik) => (
         <Form className="input-container" onSubmit={formik.handleSubmit}>
-          <h4>Ürün Ekle </h4>
+          <h4>{isEdit ? "Ürün Güncelle" : "Ürün Ekle"} </h4>
           <Field
             className="modern-input"
             id="title"
@@ -176,7 +184,7 @@ const ProductAdd = () => {
           )}
 
           <button id="modern-button" type="submit" disabled={!formik.isValid}>
-            Ekle
+            {isEdit ? "Kaydet" : "Ekle"}
           </button>
         </Form>
       )}
