@@ -78,6 +78,7 @@ const Products = () => {
           id="title"
           onChange={(e) => handleOnChangeCategory(e)}
         >
+          <option>Bir kategori seçiniz...</option>
           {category.map((category, i) => (
             <option key={i} value={category.title}>
               {category.title}
@@ -91,6 +92,7 @@ const Products = () => {
           id="title"
           onChange={(e) => handleOnChangeSubCategory(e)}
         >
+          <option>Bir altkategori seçiniz...</option>
           {cat ? (
             category
               .find((ca) => ca.title === cat)
