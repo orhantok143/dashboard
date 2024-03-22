@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { delProduct, setProductToEdit } from "../../redux/product/productSlice";
 // import Loading from "../loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { Field } from "formik";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -44,9 +43,7 @@ const Products = () => {
 
   console.log("newProducts::", newSub);
 
-  const [category, setCategory] = useState(
-    JSON.parse(localStorage.getItem("categories"))
-  );
+  const category = JSON.parse(localStorage.getItem("categories"));
 
   const handleEdit = (product) => {
     dispatch(setProductToEdit(product));
