@@ -21,8 +21,6 @@ export const addProduct = createAsyncThunk('createProduct', async (newProduct) =
 export const putProduct = createAsyncThunk('updateProduct', async (updatedProduct) => {
     const response = await updateProduct(`${baseURL}/product/edit-product/${updatedProduct._id}`, updatedProduct);
     let ps = JSON.parse(localStorage.getItem("products"))
-    ps.find(p => p._id === updateProduct._id)
-    console.log("ps::", ps);
 
     localStorage.setItem("products", JSON.stringify(ps))
 
@@ -118,6 +116,7 @@ const productSlice = createSlice({
                 state.loading = false
                 state.error = false
                 state.sucsess = true
+                state.isEdit = false
 
             }).addCase(putProduct.rejected, (state, action) => {
                 state.loading = false

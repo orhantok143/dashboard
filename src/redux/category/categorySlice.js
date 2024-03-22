@@ -15,7 +15,6 @@ export const getCategories = createAsyncThunk('getCategorys', async () => {
 
 export const addCategory = createAsyncThunk('createCategory', async (newCategory) => {
     const response = await createCategory(`${baseURL}/category/create`, newCategory);
-    console.log(response.data);
     return response.data;
 
 });

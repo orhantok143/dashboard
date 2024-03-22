@@ -21,13 +21,6 @@ const validationSchema = yup.object({
 const ProductAdd = () => {
   const dispatch = useDispatch();
 
-  // let categories = useSelector((state) => {
-  //   const cat = state.categories.Categories.categories
-  //     ? state.categories.Categories.categories
-  //     : [];
-  //   return cat;
-  // });
-
   const categories = JSON.parse(localStorage.getItem("categories"));
 
   const editProduct = useSelector((state) => state.products.editProduct);
@@ -66,7 +59,6 @@ const ProductAdd = () => {
       initialValues={isEdit ? editProduct : initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
-        console.log("values", values);
         values.image = loadImage;
         if (values._id) {
           dispatch(putProduct(values));
