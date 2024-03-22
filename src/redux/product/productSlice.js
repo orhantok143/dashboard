@@ -20,10 +20,6 @@ export const addProduct = createAsyncThunk('createProduct', async (newProduct) =
 
 export const putProduct = createAsyncThunk('updateProduct', async (updatedProduct) => {
     const response = await updateProduct(`${baseURL}/product/edit-product/${updatedProduct._id}`, updatedProduct);
-    let ps = JSON.parse(localStorage.getItem("products"))
-
-    localStorage.setItem("products", JSON.stringify(ps))
-
     return response.data;
 });
 
