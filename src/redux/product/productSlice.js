@@ -1,6 +1,5 @@
-// todosSlice.js
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import product from './todosService'; // Servis fonksiyonlarını içe aktar
 import { createProduct, deleteProduct, getProduct, updateProduct } from './productService';
 import { baseURL } from '../baseUrl';
 
