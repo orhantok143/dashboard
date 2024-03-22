@@ -14,11 +14,22 @@ export const getProducts = createAsyncThunk('getProducts', async () => {
 
 export const addProduct = createAsyncThunk('createProduct', async (newProduct) => {
     const response = await createProduct(`${baseURL}/product/add-product`, newProduct);
+
+    const ps = JSON.parse(localStorage.getItem("products"))
+
+
+    ps.push(response.data)
+
+    localStorage.setItem("products", JSON.stringify(ps))
     return response.data;
 });
 
 export const putProduct = createAsyncThunk('updateProduct', async (updatedProduct) => {
     const response = await updateProduct(`${baseURL}/product/edit-product/${updatedProduct._id}`, updatedProduct);
+    const ps = JSON.parse(localStorage.getItem("products"));
+    let objIndex = ps.findIndex(p => p._id === response.data.product._id)
+    ps[objIndex] = response.data.product
+    localStorage.setItem("products", JSON.stringify(ps))
     return response.data;
 });
 

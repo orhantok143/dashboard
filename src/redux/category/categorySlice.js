@@ -20,6 +20,12 @@ export const addCategory = createAsyncThunk('createCategory', async (newCategory
 });
 export const putCategory = createAsyncThunk('updateCategory', async (updatedCategory) => {
     const response = await updateCategory(`${baseURL}/category/${updateCategory._id}`, updatedCategory);
+
+    // const ps = JSON.parse(localStorage.getItem("categories"));
+    // let objIndex = ps.findIndex(p => p._id === response.data.category._id)
+    // ps[objIndex] = response.data.category
+    // localStorage.setItem("categories", JSON.stringify(ps))
+
     return response.data;
 });
 
