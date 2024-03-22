@@ -7,30 +7,51 @@ import { useDispatch } from "react-redux";
 import { delProduct, setProductToEdit } from "../../redux/product/productSlice";
 // import Loading from "../loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { Field } from "formik";
 
 const Products = () => {
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const [value, setValue] = useState("");
+  const [cat, setCat] = useState("");
+
+  const [subCategory, setSubCategory] = useState("");
 
   const handleonChange = (e) => {
     let val = e.target.value;
     setValue(val);
   };
 
+  const handleOnChangeCategory = (cat) => {
+    setCat(cat.target.value);
+  };
+
+  const handleOnChangeSubCategory = (cat) => {
+    setSubCategory(cat.target.value);
+  };
+
+  console.log("cat::", cat);
+
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products"))
+  );
+
+  let newProducts = cat ? products.filter((p) => p.category === cat) : products;
+
+  let newSub = subCategory
+    ? newProducts.filter((p) => p.subCategory === subCategory)
+    : newProducts;
+
+  console.log("newProducts::", newSub);
+
+  const [category, setCategory] = useState(
+    JSON.parse(localStorage.getItem("categories"))
   );
 
   const handleEdit = (product) => {
     dispatch(setProductToEdit(product));
     navigator("../add-product");
   };
-
-  // const categoryLoading = useSelector((state) => state.categories.loading);
-  // const productLoading = useSelector((state) => state.products.loading);
-
-  // const loading = categoryLoading || productLoading;
 
   const handleDelete = (id) => {
     dispatch(delProduct(id));
@@ -51,7 +72,37 @@ const Products = () => {
             }}
           />
         </div>
+        <select
+          className="modern-select"
+          name="title"
+          id="title"
+          onChange={(e) => handleOnChangeCategory(e)}
+        >
+          <option>Ana Kategori Seçiniz...</option>
+          {category.map((category, i) => (
+            <option key={i} value={category.title}>
+              {category.title}
+            </option>
+          ))}
+        </select>
 
+        <select
+          className="modern-select"
+          name="title"
+          id="title"
+          onChange={(e) => handleOnChangeSubCategory(e)}
+        >
+          <option>Ana Kategori Seçiniz...</option>
+          {cat ? (
+            category
+              .find((ca) => ca.title === cat)
+              .subCategory.map((c, i) => (
+                <option key={i}> {c.subCategory} </option>
+              ))
+          ) : (
+            <></>
+          )}
+        </select>
         <table>
           <thead>
             <tr>
@@ -64,7 +115,7 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {products
+            {newSub
               .filter((p) =>
                 p.title
                   .trim()
