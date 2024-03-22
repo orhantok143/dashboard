@@ -12,8 +12,6 @@ export const Categories = () => {
     JSON.parse(localStorage.getItem("categories"))
   );
 
-  console.log(value);
-
   const handleDelete = (id) => {
     dispatch(delCategory(id));
 

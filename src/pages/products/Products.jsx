@@ -29,8 +29,6 @@ const Products = () => {
     setSubCategory(cat.target.value);
   };
 
-  console.log("cat::", cat);
-
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products"))
   );
@@ -41,7 +39,12 @@ const Products = () => {
     ? newProducts.filter((p) => p.subCategory === subCategory)
     : newProducts;
 
-  console.log("newProducts::", newSub);
+  let newP =
+    value !== ""
+      ? products.filter((p) =>
+          p.title.trim().toLowerCase().includes(value.trim().toLowerCase())
+        )
+      : newSub;
 
   const category = JSON.parse(localStorage.getItem("categories"));
 
@@ -75,7 +78,6 @@ const Products = () => {
           id="title"
           onChange={(e) => handleOnChangeCategory(e)}
         >
-          <option>Ana Kategori Seçiniz...</option>
           {category.map((category, i) => (
             <option key={i} value={category.title}>
               {category.title}
@@ -89,7 +91,6 @@ const Products = () => {
           id="title"
           onChange={(e) => handleOnChangeSubCategory(e)}
         >
-          <option>Ana Kategori Seçiniz...</option>
           {cat ? (
             category
               .find((ca) => ca.title === cat)
@@ -112,31 +113,24 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {newSub
-              .filter((p) =>
-                p.title
-                  .trim()
-                  .toLowerCase()
-                  .includes(value.trim().toLowerCase())
-              )
-              .map((product, i) => {
-                return (
-                  <tr key={i}>
-                    <td> {product.title} </td>
+            {newP.map((product, i) => {
+              return (
+                <tr key={i}>
+                  <td> {product.title} </td>
 
-                    <td className="_category">{product.category}</td>
-                    <td className="_subCategory">{product.subCategory}</td>
-                    <td>{product.price}</td>
-                    <td className="_action">
-                      <FaRegEdit onClick={() => handleEdit(product)} />
+                  <td className="_category">{product.category}</td>
+                  <td className="_subCategory">{product.subCategory}</td>
+                  <td>{product.price}</td>
+                  <td className="_action">
+                    <FaRegEdit onClick={() => handleEdit(product)} />
 
-                      <MdDeleteOutline
-                        onClick={() => handleDelete(product._id)}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
+                    <MdDeleteOutline
+                      onClick={() => handleDelete(product._id)}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
