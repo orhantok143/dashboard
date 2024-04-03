@@ -15,7 +15,7 @@ const validationSchema = yup.object({
     .number()
     .min(0, "Fiyat 0'dan büyük olmalıdır")
     .required("Fiyat gereklidir"),
-  image: yup.mixed().required("Lütfen bir resim seçin"),
+  image: yup.mixed(),
 });
 
 const ProductAdd = () => {
@@ -59,8 +59,10 @@ const ProductAdd = () => {
       initialValues={isEdit ? editProduct : initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
+        console.log("values.image:", values.image);
         values.image = loadImage;
         if (values._id) {
+          values.image = editProduct.image;
           dispatch(putProduct(values));
           actions.resetForm();
         } else {
